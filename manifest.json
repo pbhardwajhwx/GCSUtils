@@ -12,6 +12,7 @@
 		"tabs",
 		"http://psv28cmsmas1:7000/*",
 		"https://hortonworks.my.salesforce.com/*",
+		"https://*/*",
 		"clipboardWrite",
 		"clipboardRead",
 		"notifications",

@@ -1,3 +1,21 @@
+// START CODE for "copymachostsips"
+
+function copyMacHostsIPs() {
+	var hostnames = [];
+	chrome.tabs.executeScript({file: "js/jquery-3.1.1.min.js"}, function(){
+            chrome.tabs.executeScript({file: "js/CopyMacHostsIPs.js"});
+        });
+}
+
+// END CODE for "copymachostsips"
+
+function copyLinuxHostsIPs() {
+	var hostnames = [];
+	chrome.tabs.executeScript({file: "js/jquery-3.1.1.min.js"}, function(){
+            chrome.tabs.executeScript({file: "js/CopyLinuxHostsIPs.js"});
+        });
+}
+
 // START CODE for "copyexternalkblink"
 
 function createExternalURL() {
@@ -119,6 +137,20 @@ function createContextMenus() {
 		"id":							"copycasedirectory",
 		"documentUrlPatterns":			["https://informatica.my.salesforce.com/*"]
 	};
+
+	var COPY_MAC_HOSTS_IPs = {
+		"title":						"Mac copy host/ip",
+		"contexts":						["page"],
+		"id":							"copymachostsips",
+		"documentUrlPatterns":			["https://*/*","http://*/*"]
+	}
+
+	var COPY_LINUX_HOSTS_IPs = {
+		"title":						"Linux copy host/ip",
+		"contexts":						["page"],
+		"id":							"copylinuxhostsips",
+		"documentUrlPatterns":			["https://*/*","http://*/*"]
+	}
 	
 	// Add the new Menu Item Here
 	//
@@ -126,7 +158,7 @@ function createContextMenus() {
 	
 	// Push the new menu item in menus Array
 	
-	menus.push(ADMINCONSOLE_AUTO_FILL,COPY_EXTERNAL_KB_LINK,GOTO_EXTERNAL_KB_LINK,COPY_CASE_DIRECTORY);
+	menus.push(ADMINCONSOLE_AUTO_FILL,COPY_EXTERNAL_KB_LINK,GOTO_EXTERNAL_KB_LINK,COPY_CASE_DIRECTORY,COPY_MAC_HOSTS_IPs,COPY_LINUX_HOSTS_IPs);
 	
 	for(var i = 0; i < menus.length; i++)
 		chrome.contextMenus.create(menus[i]);
@@ -148,6 +180,12 @@ function callback(info) {
 										break;
 
 		case 'copycasedirectory':		copyCaseDirectory();
+										break;
+
+		case 'copymachostsips' :		copyMacHostsIPs();
+										break;
+
+		case 'copylinuxhostsips' :		copyLinuxHostsIPs();
 										break;
 	}
 }
