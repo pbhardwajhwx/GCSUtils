@@ -68,7 +68,7 @@ $(".host-ip").each(function(){ips.push($(this).text())});
 var commandPrivateEtcHosts = "sudo tee -a /etc/hosts <<EOF";
 
 for(i=0;i<hostnames.length;i++)
-	commandPrivateEtcHosts = commandPrivateEtcHosts + "\n" + hostnames[i] + "    " + ips[i];
+	commandPrivateEtcHosts = commandPrivateEtcHosts + "\n" + ips[i] + "    " + hostnames[i];
 commandPrivateEtcHosts = commandPrivateEtcHosts + "\n" + "EOF";
 
 copyTextToClipboard(commandPrivateEtcHosts);
