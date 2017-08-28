@@ -81,9 +81,10 @@ var getCaseNum = function() {
         .find(".pbSubsection")
         .find("td:textEquals('Case Number')")
         .parent()
-        .find("td:eq(1)")
+        .find("td:eq(3)")
         .text();
     caseNum = caseNum.replace("[View Hierarchy]", "");
+    caseNum = caseNum.trim();
     console.log(caseNum);
     return caseNum;
 }
@@ -97,14 +98,14 @@ var getSubject = function() {
         .contents()
         .find(".mainContent")
         .find(".pbSubsection")
-        .find("td:textEquals('Subject')")
+        .find("td:textEquals('Details')")
         .parent()
         .find("td:eq(1)")
         .children()
         .text();
 
     console.log(subject);
-    subject = subject.slice(0, 50);
+    subject = subject.slice(0, 30);
     console.log(subject);
     var cleanSubject = clean(subject);
     return cleanSubject;
@@ -134,11 +135,13 @@ var getCaseDirectory = function() {
     chrome.storage.local.get('caseDirectory', function(result) {
         try {
             var caseDir = result.caseDirectory;
-            var finalCaseDirectory = "\"" + caseDir + "\\" + getCaseNum() + "_" + getAccountName() + "_" + getSubject() + "\"";
+            //var finalCaseDirectory = "\"" + caseDir + "\\" + getCaseNum() + "_" + getAccountName() + "_" + getSubject() + "\"";
+            var finalCaseDirectory = "\"" + caseDir + "/" + getCaseNum() + "_" + getAccountName() + "_" + getSubject() + "/" + "\"";
             copyTextToClipboard(finalCaseDirectory);
         } catch (err) {
             chrome.runtime.sendMessage({ directoryCopied: "NO", directory: finalCaseDirectory, errorMessage: e }, {}, function() {});
         }
+        console.log('sending message');
         chrome.runtime.sendMessage({ directoryCopied: "YES", directory: finalCaseDirectory }, {}, function() {});
         //console.log(caseDir);
     });

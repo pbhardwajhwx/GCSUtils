@@ -53,6 +53,7 @@ function copyCaseDirectory() {
 
 function issueUserNotificationsCaseDirectoryRelated(status, directory, error) {
 	if(status == 'Success') {
+		console.log('Creating success notification!');
 		var successNotification = chrome.notifications.create('successnotification', {
 			type: "basic",
 			title: "Success",
@@ -135,7 +136,7 @@ function createContextMenus() {
 		"title":						"Copy Case Directory",
 		"contexts":						["page"],
 		"id":							"copycasedirectory",
-		"documentUrlPatterns":			["https://informatica.my.salesforce.com/*"]
+		"documentUrlPatterns":			["https://hortonworks.my.salesforce.com/*"]
 	};
 
 	var COPY_MAC_HOSTS_IPs = {
@@ -202,6 +203,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 			issueUserNotificationsKBRelated(request.accessOpenExternalKB)
 		}
 		if(request.directoryCopied == 'YES') {
+			console.log('just before creating notification');
 			issueUserNotificationsCaseDirectoryRelated('Success', request.directory);
 		}
 		if(request.directoryCopied == 'NO') {
