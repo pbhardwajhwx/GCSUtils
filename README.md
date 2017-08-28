@@ -12,4 +12,5 @@
 ![demo](Screenshots/copy_hosts_ips.gif)
 
 
-<h4>3. Right-click copy the case directory. You need to specify the directory on your local file system where you would store all the case directories. The format of the case directory is $BASE_PATH/$CASE_NUMBER_$ACCOUNT_NAME_($DETAILS).slice(0,30)
+<h4>3. Right-click copy the case directory. You need to specify the directory on your local file system where you would store all the case directories. The format of the case directory is 
+<code>$BASE_PATH/$CASE_NUMBER_$ACCOUNT_NAME_($DETAILS).slice(0,30)
