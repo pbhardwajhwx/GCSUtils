@@ -62,7 +62,8 @@ function copyTextToClipboard(text) {
 
 
 function clean(dirty) {
-    return dirty.replace(/[\[\]\/(){}?*+\^\&$\\.|\-\:\"]/g, "");
+    //return dirty.replace(/[\[\]\/(){}?*+\^\&$\\.|\-\:\"]/g, "");
+    return dirty.replace(/[\n\r\[\]\/(){}?*+\^\&$\\.|\-\:\"]/g, "");
 }
 
 $.expr[":"].textEquals = function(a, i, m) {
